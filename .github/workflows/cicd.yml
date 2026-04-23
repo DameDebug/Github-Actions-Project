@@ -44,3 +44,18 @@ jobs:
       
     - name: Gitleaks Code Scan
       run: gitleaks detect source . -r gitleaks-report.json -f json
+
+  test:
+    runs-on: self-hosted
+    needs: compile
+
+    steps:
+    - uses: actions/checkout@v4 #it is going to create a local copy then go to runner and check if the code is error free
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4 #setup the java environment
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Unit Test Cases
+      run: mvn tst
