@@ -47,7 +47,7 @@ jobs:
 
   test:
     runs-on: self-hosted
-    needs: compile
+    needs: security-check
 
     steps:
     - uses: actions/checkout@v4 #it is going to create a local copy then go to runner and check if the code is error free
